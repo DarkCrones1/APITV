@@ -1,0 +1,5 @@
+namespace APITV.Common.Interfaces.Entities;
+
+public interface IBaseQueryable
+{
+}
