@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Api.Common.Entities;
+using APITV.Common.Entities;
 using System.Linq.Expressions;
 using APITV.Common.Interfaces.Entities;
 

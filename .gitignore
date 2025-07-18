@@ -486,3 +486,6 @@ $RECYCLE.BIN/
 # Archivos de configuración sensibles
 # appsettings.json
 # appsettings.Development.json
+
+Migrations
+

@@ -1,6 +1,6 @@
-using Api.Common.Interfaces.Entities;
+using APITV.Common.Interfaces.Entities;
 
-namespace Api.Common.Entities;
+namespace APITV.Common.Entities;
 
 public abstract class BaseQueryable : BaseEntity, IBaseQueryable
 {

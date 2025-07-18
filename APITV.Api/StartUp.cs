@@ -8,10 +8,10 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 // using APITV.Infrastructure.Filters;
-// using APITV.Infrastructure.Data;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
-// using APITV.Application.Mapping;
+using APITV.Infrastructure.Data;
+using APITV.Application.Mapping;
 // using APITV.Common.Interfaces.Repositories;
 // using APITV.Infrastructure;
 // using APITV.Infrastructure.Repositories;
@@ -83,12 +83,12 @@ public class StartUp(IConfiguration configuration)
         services.AddEndpointsApiExplorer();
 
         // Add DB Connection string
-        // services.AddDbContext<ApiDbContext>(options =>
-        //     options.UseSqlServer(Configuration.GetConnectionString("ApiDevString") ?? throw new InvalidOperationException("Database Connection String Not Found...")).UseLazyLoadingProxies()
-        // );
+        services.AddDbContext<ApiTvDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("ApiDevString") ?? throw new InvalidOperationException("Database Connection String Not Found...")).UseLazyLoadingProxies()
+        );
 
         // Add Mappers
-        // services.AddAutoMapper(typeof(MappingProfile).Assembly);
+        services.AddAutoMapper(typeof(MappingProfile).Assembly);
 
         // Configure Cors
         services.AddCors(options => options.AddPolicy("corsPolicy", builder =>
