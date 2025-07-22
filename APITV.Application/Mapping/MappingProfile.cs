@@ -1,5 +1,8 @@
 
 // using APITV.Domain.Dto.Request.Create;
+using APITV.Domain.Dto.QueryFilters;
+using APITV.Domain.Dto.Response;
+using APITV.Domain.Entities;
 using AutoMapper;
 
 namespace APITV.Application.Mapping;
@@ -11,6 +14,8 @@ public class MappingProfile : Profile
 
         // Response
 
+        CreateMap<Platform, PlatformResponseDto>();
+
         // Create
 
         // Update
@@ -18,5 +23,7 @@ public class MappingProfile : Profile
         // Delete
 
         // QueryFilter
+
+        CreateMap<Platform, PlatformQueryFilter>();
     }
 }

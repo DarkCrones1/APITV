@@ -7,24 +7,19 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
-// using APITV.Infrastructure.Filters;
+using APITV.Infrastructure.Filters;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 using APITV.Infrastructure.Data;
 using APITV.Application.Mapping;
-// using APITV.Common.Interfaces.Repositories;
-// using APITV.Infrastructure;
-// using APITV.Infrastructure.Repositories;
-// using APITV.Common.Interfaces.Services;
-// using APITV.Application.Services;
-// using APITV.Domain.Interfaces;
-// using APITV.Common.Helpers;
-// using APITV.Domain.Interfaces.Repositories;
-// using APITV.Domain.Interfaces.Services;
-// using APITV.Infrastructure.Repositories;
-// using APITV.Application.Services;
-// using Api.Domain.Interfaces.Repositories;
-// using Api.Domain.Interfaces.Services;
+using APITV.Common.Interfaces.Repositories;
+using APITV.Infrastructure;
+using APITV.Infrastructure.Repositories;
+using APITV.Common.Interfaces.Services;
+using APITV.Application.Services;
+using APITV.Domain.Interfaces;
+using APITV.Domain.Interfaces.Repositories;
+using APITV.Domain.Interfaces.Services;
 
 namespace APITV.Api;
 
@@ -39,7 +34,7 @@ public class StartUp(IConfiguration configuration)
         services.AddControllers(
             options =>
             {
-                // options.Filters.Add<GlobalExceptionFilter>();
+                options.Filters.Add<GlobalExceptionFilter>();
             }
         )
             .AddJsonOptions(options =>
@@ -96,9 +91,18 @@ public class StartUp(IConfiguration configuration)
             builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
         }));
 
-        // Add Serivces
-
         // Add Repositories
+        services.AddScoped(typeof(ICrudRepository<>), typeof(CrudRepository<>));
+        services.AddScoped(typeof(IRetrieveRepository<>), typeof(RetrieveRepository<>));
+        services.AddScoped(typeof(ICatalogBaseRepository<>), typeof(CatalogBaseRepository<>));
+        services.AddScoped<IPlatformRepository, PlatformRepository>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+        // Add Services
+        services.AddScoped(typeof(ICrudService<>), typeof(CrudService<>));
+        services.AddScoped(typeof(ICatalogBaseService<>), typeof(CatalogBaseService<>));
+        services.AddScoped<IPlatformservice, PlatformService>();
+
 
         services.AddHttpContextAccessor();
 
